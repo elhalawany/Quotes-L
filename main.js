@@ -46,7 +46,7 @@ async function getQuote() {
 // Get Image from Unsplash API
 
 async function getImage(){
-    const apiKey = "JdKTHkVpGxm6Beq3Obx1pgFjVldSuvfFvwZk7PpIWGg";
+    const apiKey = "API_KEY";
     const category = "samurai";
     const apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&query=${category}`;
 
