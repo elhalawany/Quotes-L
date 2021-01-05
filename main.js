@@ -38,7 +38,7 @@ async function getQuote() {
       getQuote();
       errorCount++;
       console.log(errorCount);
-      console.log(`Something went Wrong.`, error);
+      M.toast({html: `Error Can't Load new Quote, ${error}`, classes: 'rounded pink darken-2'})
     }
   }
 }
@@ -46,19 +46,19 @@ async function getQuote() {
 // Get Image from Unsplash API
 
 async function getImage(){
-    const apiKey = "API_KEY";
-    const category = "coffee";
+    const apiKey = "JdKTHkVpGxm6Beq3Obx1pgFjVldSuvfFvwZk7PpIWGg";
+    const category = "samurai";
     const apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&query=${category}`;
 
     try{
      const response = await fetch(apiUrl);
      const data = await response.json();    
      const imgUrl = data.urls.regular;
-     console.log(imgUrl);
      document.body.style.backgroundImage = `url(${imgUrl})`;
     }
     catch(error){
         console.log(error)
+        M.toast({html: `Error Can't Load new Image, ${error}`, classes: 'rounded pink darken-2'})
     }
 
 }
@@ -72,6 +72,7 @@ function tweetQuote() {
 }
 
 
+
 // New Quote Button
 newQuoteBtn.addEventListener("click", () => {
   getQuote();
@@ -82,9 +83,17 @@ newQuoteBtn.addEventListener("click", () => {
 twitterBtn.addEventListener("click", tweetQuote);
 
 //New wallpaper Btn
-newWallpaperBtn.addEventListener("click", getImage);
+newWallpaperBtn.addEventListener('click', getImage);
+
+// fit Image Size "Bad Idea!".
+// window.addEventListener("resize", function(event) {
+//   windowWidth = document.body.clientWidth;
+//   windowHeight = document.body.clientHeight;
+//   document.body.style.backgroundSize = `${windowWidth}px ${windowHeight}px`;
+//  })
 
 // on Load
+
 getQuote();
 
 getImage();
